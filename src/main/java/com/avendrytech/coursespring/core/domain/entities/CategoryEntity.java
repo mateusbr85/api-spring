@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_categories")
@@ -16,6 +18,9 @@ public class CategoryEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Transient
+    private final Set<ProductEntity> products = new HashSet<>();
 
     public CategoryEntity(Long id, String name) {
         this.id = id;
@@ -42,6 +47,10 @@ public class CategoryEntity implements Serializable {
         this.name = name;
     }
 
+    public Set<ProductEntity> getProducts() {
+        return products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -53,4 +62,5 @@ public class CategoryEntity implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }
