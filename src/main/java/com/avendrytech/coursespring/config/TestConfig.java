@@ -1,8 +1,10 @@
 package com.avendrytech.coursespring.config;
 
+import com.avendrytech.coursespring.core.domain.entities.CategoryEntity;
 import com.avendrytech.coursespring.core.domain.entities.OrderEntity;
 import com.avendrytech.coursespring.core.domain.entities.UserEntity;
 import com.avendrytech.coursespring.core.domain.enums.OrderStatusEnum;
+import com.avendrytech.coursespring.core.ports.output.repositories.ICategoryRepository;
 import com.avendrytech.coursespring.core.ports.output.repositories.IOrderRepository;
 import com.avendrytech.coursespring.core.ports.output.repositories.IUserRepository;
 import org.hibernate.query.Order;
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private IOrderRepository orderRepository;
 
+    @Autowired
+    private ICategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         UserEntity userOne = new UserEntity(null, "Maria teste", "maria@gmail.com", "1s41281a1s");
@@ -36,5 +41,11 @@ public class TestConfig implements CommandLineRunner {
         OrderEntity o3 = new OrderEntity(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatusEnum.DELIVERED,userOne);
 
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+
+        CategoryEntity cat1 = new CategoryEntity(null, "Electronics");
+        CategoryEntity cat2 = new CategoryEntity(null, "Books");
+        CategoryEntity cat3 = new CategoryEntity(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
     }
 }
