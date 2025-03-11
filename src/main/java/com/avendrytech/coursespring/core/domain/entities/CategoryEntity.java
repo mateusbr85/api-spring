@@ -1,5 +1,6 @@
 package com.avendrytech.coursespring.core.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -19,7 +20,8 @@ public class CategoryEntity implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private final Set<ProductEntity> products = new HashSet<>();
 
     public CategoryEntity(Long id, String name) {
