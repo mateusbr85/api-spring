@@ -1,5 +1,6 @@
 package com.avendrytech.coursespring.core.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -24,6 +25,7 @@ public class UserEntity implements Serializable {
 
     private String password;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "client")
     private List<OrderEntity> orders = new ArrayList<>();
 
