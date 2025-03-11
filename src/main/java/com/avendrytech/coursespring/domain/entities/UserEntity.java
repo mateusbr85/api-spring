@@ -1,13 +1,19 @@
 package com.avendrytech.coursespring.domain.entities;
 
+import jakarta.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+@Entity
+@Table(name = "tb_user")
+public class UserEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -16,7 +22,7 @@ public class User implements Serializable {
 
     private String password;
 
-    public User(Long id, String name, String email, String password) {
+    public UserEntity(Long id, String name, String email, String password) {
         super();
         this.id = id;
         this.name = name;
@@ -24,7 +30,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User() {
+    public UserEntity() {
 
     }
 
@@ -63,7 +69,7 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        User that = (User) o;
+        UserEntity that = (UserEntity) o;
         return Objects.equals(id, that.id);
     }
 
