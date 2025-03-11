@@ -1,4 +1,4 @@
-package com.avendrytech.coursespring.domain.entities;
+package com.avendrytech.coursespring.core.domain.entities;
 
 import jakarta.persistence.*;
 

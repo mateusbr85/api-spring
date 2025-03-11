@@ -1,6 +1,6 @@
 package com.avendrytech.coursespring.adapters.input.controllers;
 
-import com.avendrytech.coursespring.domain.entities.UserEntity;
+import com.avendrytech.coursespring.core.domain.entities.UserEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
