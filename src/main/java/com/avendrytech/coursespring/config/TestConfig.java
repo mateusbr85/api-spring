@@ -1,6 +1,5 @@
 package com.avendrytech.coursespring.config;
 
-import com.avendrytech.coursespring.adapters.output.database.UserRepository;
 import com.avendrytech.coursespring.core.domain.entities.UserEntity;
 import com.avendrytech.coursespring.core.ports.output.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
