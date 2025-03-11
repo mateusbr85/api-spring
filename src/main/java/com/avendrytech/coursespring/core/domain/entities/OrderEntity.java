@@ -1,5 +1,6 @@
 package com.avendrytech.coursespring.core.domain.entities;
 
+import com.avendrytech.coursespring.core.domain.enums.OrderStatusEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 @Table(name = "tb_order")
 public class OrderEntity implements Serializable {
     @Serial
-    private static final long serialVersionUID= 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,18 +22,21 @@ public class OrderEntity implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant date;
 
+    private Integer orderStatus;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private UserEntity client;
 
-    public OrderEntity(Long id, Instant date, UserEntity client) {
+    public OrderEntity(Long id, Instant date, OrderStatusEnum orderStatus, UserEntity client) {
         super();
         this.id = id;
         this.date = date;
+        setOrderStatus(orderStatus);
         this.client = client;
     }
 
-    public OrderEntity(){
+    public OrderEntity() {
 
     }
 
@@ -58,6 +62,16 @@ public class OrderEntity implements Serializable {
 
     public void setClient(UserEntity client) {
         this.client = client;
+    }
+
+    public OrderStatusEnum getOrderStatus() {
+        return OrderStatusEnum.fromCode(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     @Override
