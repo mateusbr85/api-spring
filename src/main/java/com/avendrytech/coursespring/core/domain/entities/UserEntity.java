@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,9 @@ public class UserEntity implements Serializable {
     private String email;
 
     private String password;
+
+    @ManyToMany(mappedBy = "client")
+    private List<OrderEntity> orders = new ArrayList<>();
 
     public UserEntity(Long id, String name, String email, String password) {
         super();
@@ -64,6 +69,10 @@ public class UserEntity implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
     }
 
     @Override
